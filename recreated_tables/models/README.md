@@ -1,4 +1,4 @@
-## SQL Practice Free Notes
+## SQL Practice Free Notes 3.18.26
 
 Powershell commands to make an sql table and read sql files:
 cd "C:\Users\Anhky Nguyen\githubSQL\recreated_tables\models"
@@ -55,3 +55,24 @@ SELECT models.model, models.year, fuels.fuel
 FROM models
 JOIN fuels ON models.fuel_id = fuels.fuel_id
 WHERE fuels.fuel = 'electric'
+
+
+
+## SQL Practice Free Notes 3.19.26
+
+Example 6:
+Efficiency (in terms of best_mpge) eaach manufacturer is as using fuel
+SELECT m.manufacturer_id, f.fuel, AVG(mod.best_mpge) AS avg_best_mpge
+FROM manufacturers m
+JOIN models mod ON m.manufacturer_id = mod.manufacturer_id
+JOIN fuels f ON mod.fuel_id = f.fuel_id
+GROUP BY m.manufacturer, f.fuel;
+
+Example 7:
+Calculate which manufacturers make the most electric vehicles
+SELECT m.manufacturer_id, manufacturer, f.fuel, COUNT(*) as model_count
+FROM manufacturers m
+JOIN models mod ON m.manufacturer_id = mod.manufacturer_id
+JOIN fuels f ON mod.fuel_id = f.fuel_id
+GROUP BY m.manufacturer, manufacturer, f.fuel
+ORDER BY model_count DESC;
